@@ -1,0 +1,22 @@
+void Adc32init()
+{
+		DDRA= 0b00000000;
+		ADMUX=0b01100000;
+		ADCSRA = (1<<ADEN);
+		
+}
+
+
+
+
+float ADXLread(int a)
+{
+	int x;
+	ADMUX=0b01100000 + a;
+	ADCSRA = ADCSRA|(1<<ADSC);
+	while (ADCSRA & (1<<ADSC));
+	x=ADCH;
+	return x ;
+
+}
+
